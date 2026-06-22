@@ -35,4 +35,10 @@ public class AlunoController {
     public AlunoResponse buscarPorId(@PathVariable Long id){
         return this.alunoService.buscarPorId(id);
     }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public AlunoResponse atualizar(@PathVariable Long id, @RequestBody AlunoRequest request){
+        return this.alunoService.atualizar(id, request);
+    }
 }
