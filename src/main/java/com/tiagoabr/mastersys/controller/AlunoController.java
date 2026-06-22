@@ -3,6 +3,8 @@ package com.tiagoabr.mastersys.controller;
 import com.tiagoabr.mastersys.dto.AlunoRequest;
 import com.tiagoabr.mastersys.dto.AlunoResponse;
 import com.tiagoabr.mastersys.service.AlunoService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,5 +22,11 @@ public class AlunoController {
     @ResponseStatus(HttpStatus.CREATED)
     public AlunoResponse cadastrar(@RequestBody AlunoRequest request){
         return this.alunoService.cadastrar(request);
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public Page<AlunoResponse> listar(Pageable pageable){
+        return this.alunoService.listar(pageable);
     }
 }
