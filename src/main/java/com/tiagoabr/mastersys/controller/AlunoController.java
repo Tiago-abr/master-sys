@@ -41,4 +41,11 @@ public class AlunoController {
     public AlunoResponse atualizar(@PathVariable Long id, @RequestBody AlunoRequest request){
         return this.alunoService.atualizar(id, request);
     }
+
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void excluir(@PathVariable Long id){
+        this.alunoService.excluir(id);
+    }
 }
