@@ -34,7 +34,19 @@ public class AlunoService {
         return AlunoResponse.fromEntity(this.buscarEntidadePorId(id));
     }
 
+    public AlunoResponse atualizar(Long id, AlunoRequest request){
+        Aluno aluno = this.buscarEntidadePorId(id);
+        request.setEntity(aluno);
+
+        Aluno alunoAtualizado = this.alunoRepository.save(aluno);
+        return AlunoResponse.fromEntity(alunoAtualizado);
+    }
+
     private Aluno buscarEntidadePorId(Long id){
         return this.alunoRepository.findById(id).orElseThrow(() -> new RuntimeException("Erro ao buscar aluno por ID"));
+    }
+
+    private Boolean existePorEmail(String email){
+        return this.alunoRepository.existsByEmail(email);
     }
 }
