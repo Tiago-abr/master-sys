@@ -29,4 +29,12 @@ public class AlunoService {
     public Page<AlunoResponse> listar(Pageable pageable){
         return this.alunoRepository.findAll(pageable).map(AlunoResponse::fromEntity);
     }
+
+    public AlunoResponse buscarPorId(Long id){
+        return AlunoResponse.fromEntity(this.buscarEntidadePorId(id));
+    }
+
+    private Aluno buscarEntidadePorId(Long id){
+        return this.alunoRepository.findById(id).orElseThrow(() -> new RuntimeException("Erro ao buscar aluno por ID"));
+    }
 }
