@@ -4,6 +4,8 @@ import com.tiagoabr.mastersys.domain.Aluno;
 import com.tiagoabr.mastersys.dto.AlunoRequest;
 import com.tiagoabr.mastersys.dto.AlunoResponse;
 import com.tiagoabr.mastersys.repository.AlunoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,5 +24,9 @@ public class AlunoService {
         Aluno aluno = request.toEntity();
         Aluno alunoSalvo = alunoRepository.save(aluno);
         return AlunoResponse.fromEntity(alunoSalvo);
+    }
+
+    public Page<AlunoResponse> listar(Pageable pageable){
+        return this.alunoRepository.findAll(pageable).map(AlunoResponse::fromEntity);
     }
 }
