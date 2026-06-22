@@ -17,7 +17,7 @@ public class AlunoService {
     }
 
     public AlunoResponse cadastrar(AlunoRequest request){
-        if(request.email() != null && this.alunoRepository.existsByEmail(request.email())){
+        if(request.email() != null && this.existePorEmail(request.email())){
             throw new RuntimeException("Erro ao cadastrar aluno com este e-mail");
         }
 
@@ -40,6 +40,11 @@ public class AlunoService {
 
         Aluno alunoAtualizado = this.alunoRepository.save(aluno);
         return AlunoResponse.fromEntity(alunoAtualizado);
+    }
+
+    public void excluir(Long id){
+        Aluno aluno = this.buscarEntidadePorId(id);
+        this.alunoRepository.delete(aluno);
     }
 
     private Aluno buscarEntidadePorId(Long id){
