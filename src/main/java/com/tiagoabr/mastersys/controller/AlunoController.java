@@ -29,4 +29,10 @@ public class AlunoController {
     public Page<AlunoResponse> listar(Pageable pageable){
         return this.alunoService.listar(pageable);
     }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public AlunoResponse buscarPorId(@PathVariable Long id){
+        return this.alunoService.buscarPorId(id);
+    }
 }
