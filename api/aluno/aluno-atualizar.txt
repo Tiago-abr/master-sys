@@ -1,0 +1,18 @@
+curl -X PUT http://localhost:8080/alunos/1 \
+-H "Content-Type: application/json" \
+-d '{
+    "nome": "João da Silva",
+    "dataNascimento": "2000-01-01",
+    "genero": "M",
+    "telefone": "99999999",
+    "celular": "9999999999",
+    "email": "joao@email.com",
+    "observacao": "Aluno iniciante",
+    "endereco": "Rua legal 123",
+    "numero": "123",
+    "complemento": "34-1",
+    "bairro": "bairro maneiro",
+    "cidade": "cidade muito legal",
+    "estado": "RS",
+    "cep": "000000-000"
+  }'
